@@ -6,6 +6,7 @@
  * available at https://raw.githubusercontent.com/FirelyTeam/fhir-net-api/master/LICENSE
  */
 
+using System;
 using Hl7.Fhir.ElementModel;
 using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
@@ -47,7 +48,7 @@ namespace Hl7.Fhir.Serialization
             if ( existing != null )
             {
                 mapping = _inspector.FindClassMappingByType(existing.GetType());
-                if ( mapping.Name.ToUpperInvariant() != _reader.InstanceType.ToUpperInvariant() )
+                if ( !mapping.Name.Equals(_reader.InstanceType, StringComparison.OrdinalIgnoreCase) )
                 {
                     mapping = null;
                 }

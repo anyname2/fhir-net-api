@@ -532,7 +532,7 @@ namespace Hl7.Fhir.Model
                 { typeof(Hl7.Fhir.Model.TestScript), "TestScript" },
                 { typeof(Hl7.Fhir.Model.ValueSet), "ValueSet" },
                 { typeof(Hl7.Fhir.Model.VisionPrescription), "VisionPrescription" },
-				 { typeof(Hl7.Fhir.Model.FhirPatch), "Parameters" },
+				 { typeof(Hl7.Fhir.Model.FhirPatchParameters), "Parameters" },
             };
         
 		// http://build.fhir.org/searchparameter-registry.html

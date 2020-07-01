@@ -71,7 +71,7 @@ namespace Hl7.Fhir.Serialization
 
             if (mapping == null)
             {
-                mapping = _inspector.FindClassMappingByName(_current.InstanceType);
+                mapping = _inspector.FindClassMappingByType(_current.InstanceType);
             }
 
             if (mapping == null)

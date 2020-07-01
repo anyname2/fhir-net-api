@@ -20,7 +20,7 @@ using System.Runtime.Serialization;
 
 namespace Hl7.Fhir.Model
 {
-    [FhirType("Parameters")]
+    [FhirType("Parameters", Profile = "FhirPatch")]
     [InvokeIValidatableObject]
     [DataContract]
     public class FhirPatchParameters : Parameters

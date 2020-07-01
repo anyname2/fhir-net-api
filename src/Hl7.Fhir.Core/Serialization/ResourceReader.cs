@@ -10,15 +10,6 @@ using System;
 using Hl7.Fhir.ElementModel;
 using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
-using Hl7.Fhir.Support;
-using Hl7.Fhir.Utility;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace Hl7.Fhir.Serialization
 {
@@ -56,7 +47,7 @@ namespace Hl7.Fhir.Serialization
 
             if ( mapping == null )
             {
-                mapping = _inspector.FindClassMappingByName(_reader.InstanceType);
+                mapping = _inspector.FindClassMappingByType(_reader.InstanceType);
             }
 
             if (mapping == null)

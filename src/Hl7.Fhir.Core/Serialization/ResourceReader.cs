@@ -6,18 +6,10 @@
  * available at https://raw.githubusercontent.com/FirelyTeam/fhir-net-api/master/LICENSE
  */
 
+using System;
 using Hl7.Fhir.ElementModel;
 using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
-using Hl7.Fhir.Support;
-using Hl7.Fhir.Utility;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace Hl7.Fhir.Serialization
 {
@@ -43,7 +35,20 @@ namespace Hl7.Fhir.Serialization
                 ComplexTypeReader.RaiseFormatError(
                     "Underlying data source was not able to provide the actual instance type of the resource.", _reader.Location);
 
-            var mapping = _inspector.FindClassMappingForResource(_reader.InstanceType);
+            ClassMapping mapping = null;
+            if ( existing != null )
+            {
+                mapping = _inspector.FindClassMappingByType(existing.GetType());
+                if ( !mapping.Name.Equals(_reader.InstanceType, StringComparison.OrdinalIgnoreCase) )
+                {
+                    mapping = null;
+                }
+            }
+
+            if ( mapping == null )
+            {
+                mapping = _inspector.FindClassMappingByType(_reader.InstanceType);
+            }
 
             if (mapping == null)
                 ComplexTypeReader.RaiseFormatError($"Asked to deserialize unknown resource '{_reader.InstanceType}'", _reader.Location);
